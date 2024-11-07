@@ -1,13 +1,17 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Routes, Route } from "react-router-dom";
+import { selectError, selectIsLoading } from "./redux/contacts/selectors";
+import { selectContacts } from "./redux/contacts/slice";
+import { changeFilter } from "./redux/filters/slice";
+import { fetchContacts } from "./redux/contacts/operations";
+import { HiDevicePhoneMobile } from "react-icons/hi2";
 import ContactForm from "./components/ContactForm/ContactForm";
 import SearchBox from "./components/SearchBox/SearchBox";
 import ContactList from "./components/ContactList/ContactList";
-import { HiDevicePhoneMobile } from "react-icons/hi2";
-import { useDispatch, useSelector } from "react-redux";
-import { changeFilter } from "./redux/filtersSlice";
-import { useEffect } from "react";
-import { fetchContacts } from "./redux/contactsOps";
-import { selectError, selectIsLoading } from "./redux/selectors";
-import { selectContacts } from "./redux/contactsSlice";
+import HomePage from "./pages/HomePage";
+import RegistrationPage from "./pages/RegistrationPage";
+import LoginPage from "./pages/LoginPage";
 import "./App.css";
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +29,11 @@ function App() {
 
   return (
     <div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/register" element={<RegistrationPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
       <h1>
         <HiDevicePhoneMobile />
         Phonebook

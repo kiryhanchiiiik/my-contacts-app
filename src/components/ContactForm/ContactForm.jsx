@@ -4,7 +4,7 @@ import { Formik, Form, Field } from "formik";
 import { ErrorMessage } from "formik";
 import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
 const ContactForm = () => {
   const dispatch = useDispatch();
   const FormValidate = Yup.object().shape({
