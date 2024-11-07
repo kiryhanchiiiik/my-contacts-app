@@ -1,0 +1,19 @@
+.contactListItm {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 20px;
+}
+.contactListItm:last-child {
+  margin-bottom: 0;
+}
+.contactListItm div {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+p {
+  margin: 0;
+}
