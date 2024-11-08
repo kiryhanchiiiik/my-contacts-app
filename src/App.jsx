@@ -13,6 +13,8 @@ import HomePage from "./pages/HomePage";
 import RegistrationPage from "./pages/RegistrationPage";
 import LoginPage from "./pages/LoginPage";
 import "./App.css";
+import { RestrictedRoute } from "./RestrictedRoute";
+import Layout from "./Layout";
 function App() {
   const dispatch = useDispatch();
   const items = useSelector(selectContacts);
@@ -29,11 +31,13 @@ function App() {
 
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/login" element={<LoginPage />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+      </Layout>
       {/* <h1>
         <HiDevicePhoneMobile />
         Phonebook
