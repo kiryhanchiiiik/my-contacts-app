@@ -34,7 +34,7 @@ function App() {
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
-      <h1>
+      {/* <h1>
         <HiDevicePhoneMobile />
         Phonebook
       </h1>
@@ -42,7 +42,7 @@ function App() {
       <SearchBox onFilterChange={handleFilterChange} />
       {isLoading && !error && <b>Request in progress...</b>}
       {error && <b>Something wrong</b>}
-      <ContactList contacts={items} />
+      <ContactList contacts={items} /> */}
     </div>
   );
 }
