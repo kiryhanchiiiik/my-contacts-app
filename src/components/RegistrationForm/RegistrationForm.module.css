@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+.label {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.input {
+  font-size: 18px;
+  width: 300px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px #ffffff solid;
+  background-color: transparent;
+}
+.error {
+  color: red;
+}
+.form {
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px #ffffff solid;
+}

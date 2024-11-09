@@ -1,0 +1,11 @@
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px #ffffff solid;
+  font-size: 18px;
+  transition: all 0.3s;
+}
+.active {
+  color: #535bf2;
+}

@@ -1,0 +1,8 @@
+.userMenu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.button {
+  font-size: 14px;
+}

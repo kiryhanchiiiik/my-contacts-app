@@ -1,0 +1,7 @@
+.navigation {
+  display: flex;
+  column-gap: 20px;
+}
+.active {
+  color: #535bf2;
+}

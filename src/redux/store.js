@@ -11,6 +11,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import { persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 const authConfig = {
@@ -32,3 +33,5 @@ export const store = configureStore({
       },
     }),
 });
+
+export const persistor = persistStore(store);

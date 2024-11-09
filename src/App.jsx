@@ -15,8 +15,11 @@ import LoginPage from "./pages/LoginPage";
 import "./App.css";
 import { RestrictedRoute } from "./RestrictedRoute";
 import Layout from "./Layout";
+import { refreshUser } from "./redux/auth/operations";
+import { selectUserIsRefreshing } from "./redux/auth/selectors";
 function App() {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectUserIsRefreshing);
   const items = useSelector(selectContacts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
@@ -25,10 +28,17 @@ function App() {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   const handleFilterChange = (newFilter) => {
     dispatch(changeFilter(newFilter));
   };
 
+  if (isRefreshing) {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
       <Layout>

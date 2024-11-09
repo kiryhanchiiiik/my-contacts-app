@@ -1,0 +1,9 @@
+.navigation {
+  font-size: 18px;
+  display: flex;
+  gap: 20px;
+  transition: all 0.3s;
+}
+.active {
+  color: #535bf2;
+}

@@ -27,10 +27,59 @@ export const register = createAsyncThunk(
   async (formData, thunkApi) => {
     try {
       const { data } = await authInstance.post("/users/signup", formData);
-      console.log(data);
+      setToken(data.token);
       return data;
     } catch (e) {
       return thunkApi.rejectWithValue(e.message);
     }
   }
 );
+
+export const login = createAsyncThunk(
+  // Example formData
+  //{
+  // "name": "Adrian Cross",
+  // "email": "across@mail.com",
+  //  "password": "examplepwd12345"
+  // }
+  "auth/login",
+  async (formData, thunkApi) => {
+    try {
+      const { data } = await authInstance.post("/users/login", formData);
+      setToken(data.token);
+      return data;
+    } catch (e) {
+      return thunkApi.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkApi) => {
+    const state = thunkApi.getState();
+    const token = state.auth.token;
+
+    if (!token) {
+      return thunkApi.rejectWithValue("No valid token");
+    }
+    try {
+      setToken(token);
+      const { data } = await authInstance.get("/users/current");
+      console.log(data);
+      setToken(data.token);
+      return data;
+    } catch (e) {
+      return thunkApi.rejectWithValue(e.message);
+    }
+  }
+);
+export const logout = createAsyncThunk("auth/logout", async (_, thunkApi) => {
+  try {
+    const { data } = await authInstance.post("/users/logout");
+    clearToken();
+    return data;
+  } catch (e) {
+    return thunkApi.rejectWithValue(e.message);
+  }
+});
