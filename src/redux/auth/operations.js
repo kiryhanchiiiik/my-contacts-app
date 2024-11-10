@@ -67,7 +67,6 @@ export const refreshUser = createAsyncThunk(
       setToken(token);
       const { data } = await authInstance.get("/users/current");
       console.log(data);
-      setToken(data.token);
       return data;
     } catch (e) {
       return thunkApi.rejectWithValue(e.message);
@@ -77,7 +76,9 @@ export const refreshUser = createAsyncThunk(
 export const logout = createAsyncThunk("auth/logout", async (_, thunkApi) => {
   try {
     const { data } = await authInstance.post("/users/logout");
+
     clearToken();
+
     return data;
   } catch (e) {
     return thunkApi.rejectWithValue(e.message);
