@@ -9,10 +9,12 @@ import Layout from "./Layout";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
 
-const RegistrationPage = lazy(() => import("./pages/RegistrationPage"));
-const LoginPage = lazy(() => import("./pages/LoginPage"));
+const RegistrationPage = lazy(() =>
+  import("./pages/RegistrationPage/RegistrationPage.jsx")
+);
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage/ContactPage.jsx"));
-const HomePage = lazy(() => import("./pages/HomePage"));
+const HomePage = lazy(() => import("./pages/HomePage/HomePage.jsx"));
 
 function App() {
   const dispatch = useDispatch();
