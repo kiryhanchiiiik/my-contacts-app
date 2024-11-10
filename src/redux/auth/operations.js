@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const authInstance = axios.create({
   baseURL: "https://connections-api.goit.global/",
@@ -49,6 +50,9 @@ export const login = createAsyncThunk(
       setToken(data.token);
       return data;
     } catch (e) {
+      if (e.response && e.response.status === 400) {
+        toast.error("No such user found or incorrect credentials.");
+      }
       return thunkApi.rejectWithValue(e.message);
     }
   }
