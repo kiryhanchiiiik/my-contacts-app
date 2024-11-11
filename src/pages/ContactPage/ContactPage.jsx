@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { HiDevicePhoneMobile } from "react-icons/hi2";
 import { selectError, selectIsLoading } from "../../redux/contacts/selectors";
-import { selectContacts } from "../../redux/contacts/slice";
+import { selectContacts } from "../../redux/contacts/selectors";
 import ContactList from "../../components/ContactList/ContactList";
 import { fetchContacts } from "../../redux/contacts/operations";
 import { changeFilter } from "../../redux/filters/slice";
