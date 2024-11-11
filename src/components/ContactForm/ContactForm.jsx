@@ -13,6 +13,7 @@ const ContactForm = () => {
       .max(50, "Too Long!")
       .required("Required!!!"),
     number: Yup.string()
+      .matches(/^\d+$/, "Only digits are allowed")
       .min(3, "Too short!")
       .max(50, "Too Long!")
       .required("Required!!!"),
@@ -20,6 +21,9 @@ const ContactForm = () => {
   const handleSubmit = (values, { resetForm }) => {
     dispatch(addContact(values));
     resetForm();
+  };
+  const handleNumberInput = (event) => {
+    event.target.value = event.target.value.replace(/\D/g, "");
   };
   const nameFieldId = useId();
   const numberFieldId = useId();
@@ -38,7 +42,12 @@ const ContactForm = () => {
           component="span"
         />
         <label htmlFor={numberFieldId}>Number</label>
-        <Field type="text" name="number" id={numberFieldId} />
+        <Field
+          onInput={handleNumberInput}
+          type="text"
+          name="number"
+          id={numberFieldId}
+        />
         <ErrorMessage
           className={css.ErrorMessage}
           name="number"
