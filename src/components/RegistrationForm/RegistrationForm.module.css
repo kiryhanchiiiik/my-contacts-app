@@ -6,7 +6,17 @@
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  margin-bottom: 30px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.labelContainer {
+  display: flex;
+  justify-content: space-between;
 }
 .input {
   font-size: 18px;
@@ -23,4 +33,15 @@
   border-radius: 8px;
   padding: 20px;
   border: 1px #ffffff solid;
+}
+
+.eyeBtn {
+  border: 1px solid transparent;
+  background-color: transparent;
+  padding: 0;
+}
+
+.eyeBtn:hover,
+.eyeBtn:focus {
+  border: 1px solid transparent;
 }

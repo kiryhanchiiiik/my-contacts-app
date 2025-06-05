@@ -1,26 +1,33 @@
+import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import css from "./RegistrationForm.module.css";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
+import sprite from "../../img/sprite.svg";
+import css from "./RegistrationForm.module.css";
+
 const INITIAL_VALUES = {
   name: "",
   email: "",
   password: "",
 };
+
+const RegisterUserSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(3, "Too short!")
+    .max(20, "Too Long!")
+    .required("Required!"),
+  email: Yup.string()
+    .email("Email must be a valid format")
+    .required("Required!"),
+  password: Yup.string().min(8, "Too short!").required("Required"),
+});
+
 const RegistrationForm = () => {
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
 
-  const RegisterUserSchema = Yup.object().shape({
-    name: Yup.string()
-      .min(3, "Too short!")
-      .max(20, "Too Long!")
-      .required("Required!"),
-    email: Yup.string()
-      .email("Email must be a valid format")
-      .required("Required!"),
-    password: Yup.string().min(8, "Too short!").required("Required"),
-  });
+  const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
 
   const handleSubmit = (values, actions) => {
     dispatch(register(values));
@@ -36,29 +43,63 @@ const RegistrationForm = () => {
       >
         <Form className={css.form}>
           {/* Field for name */}
-          <label className={css.label}>
-            Name
+
+          <div className={css.labelWrapper}>
+            <div className={css.labelContainer}>
+              <label className={css.label}>Name</label>
+              <ErrorMessage
+                className={css.error}
+                name="name"
+                component="span"
+              />
+            </div>
             <Field className={css.input} type="text" name="name" />
-            <ErrorMessage className={css.error} name="name" component="span" />
-          </label>
+          </div>
 
           {/* Field for email */}
-          <label className={css.label}>
-            Email
+          <div className={css.labelWrapper}>
+            <div className={css.labelContainer}>
+              <label className={css.label}>Email</label>
+              <ErrorMessage
+                className={css.error}
+                name="email"
+                component="span"
+              />
+            </div>
             <Field className={css.input} type="email" name="email" />
-            <ErrorMessage className={css.error} name="email" component="span" />
-          </label>
+          </div>
 
           {/* Field for password */}
-          <label className={css.label}>
-            Password
-            <Field className={css.input} type="password" name="password" />
-            <ErrorMessage
-              className={css.error}
+
+          <div className={css.labelWrapper}>
+            <div className={css.labelContainer}>
+              <label className={css.label}>Password</label>
+              <ErrorMessage
+                className={css.error}
+                name="password"
+                component="span"
+              />
+            </div>
+            <Field
+              className={css.input}
+              type={showPassword ? "text" : "password"}
               name="password"
-              component="span"
             />
-          </label>
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className={css.eyeBtn}
+              aria-label="Toggle password visibility"
+            >
+              <svg className={css.eyeIcon} width={25} height={25}>
+                <use
+                  href={`${sprite}#${
+                    showPassword ? "icon-eye" : "icon-eye-off"
+                  }`}
+                />
+              </svg>
+            </button>
+          </div>
 
           {/* Submit button */}
           <button type="submit">Sign Up</button>
