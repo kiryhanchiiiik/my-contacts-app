@@ -35,7 +35,13 @@
   border: 1px #ffffff solid;
 }
 
+.labelWrapper {
+  position: relative;
+}
 .eyeBtn {
+  position: absolute;
+  right: 12px;
+  top: 35px;
   border: 1px solid transparent;
   background-color: transparent;
   padding: 0;
